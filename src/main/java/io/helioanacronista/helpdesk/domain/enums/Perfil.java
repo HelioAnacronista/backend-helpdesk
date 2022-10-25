@@ -20,16 +20,17 @@ public enum Perfil {
         return descricao;
     }
 
-    public static Perfil toEnum(Integer cod) throws IllegalAccessException {
-        if (cod == null) {
+    public static Perfil toEnum(Integer cod) {
+        if(cod == null) {
             return null;
         }
-        for (Perfil x : Perfil.values()) {
-            if (cod.equals(x.getCodigo())) {
+
+        for(Perfil x : Perfil.values()) {
+            if(cod.equals(x.getCodigo())) {
                 return x;
             }
         }
 
-        throw new IllegalAccessException("Perfil inválido");
+        throw new IllegalArgumentException("Perfil inválido");
     }
 }
