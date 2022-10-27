@@ -1,5 +1,6 @@
 package io.helioanacronista.helpdesk.controllers;
 
+import io.helioanacronista.helpdesk.DTO.TecnicoDTO;
 import io.helioanacronista.helpdesk.domain.entities.Tecnico;
 import io.helioanacronista.helpdesk.services.TecnicoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class TecnicoControllers {
     private TecnicoService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Tecnico> findById(@PathVariable Integer id) {
+    public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id) {
         Tecnico obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
+        return ResponseEntity.ok().body(new TecnicoDTO(obj));
     }
 }
