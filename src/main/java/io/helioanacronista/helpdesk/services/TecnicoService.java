@@ -2,6 +2,7 @@ package io.helioanacronista.helpdesk.services;
 
 import io.helioanacronista.helpdesk.domain.entities.Tecnico;
 import io.helioanacronista.helpdesk.repositories.TecnicoRepository;
+import io.helioanacronista.helpdesk.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,6 @@ public class TecnicoService {
 
     public Tecnico findById(Integer id) {
         Optional<Tecnico> obj = repository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow( () -> new ResourceNotFoundException("Objeto não encontrado! Id: " + id));
     }
 }
