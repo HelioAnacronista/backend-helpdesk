@@ -10,6 +10,7 @@ import io.helioanacronista.helpdesk.services.exceptions.ResourceNotFoundExceptio
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +37,23 @@ public class TecnicoService {
         validarPorCPFeEmail(dto);
         Tecnico entity = new Tecnico(dto);
         return repository.save(entity);
+    }
+
+    public Tecnico update(Integer id, @Valid TecnicoDTO dto) {
+        dto.setId(id);
+        Tecnico entity = findById(id);
+        validarPorCPFeEmail(dto);
+        entity = new Tecnico(dto);
+        return repository.save(entity);
+    }
+
+    public void delete(Integer id) {
+        Tecnico entity = findById(id);
+
+        if (entity.getChamados().size() > 0) {
+            throw new DataIntegrityViolationException("Técnico possui ordens de serviço e não pode ser deletado!");
+        }
+        repository.deleteById(id);
     }
 
     private void validarPorCPFeEmail(TecnicoDTO dto) {
