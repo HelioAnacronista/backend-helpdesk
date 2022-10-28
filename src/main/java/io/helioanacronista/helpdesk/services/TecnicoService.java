@@ -34,8 +34,8 @@ public class TecnicoService {
     public Tecnico create(TecnicoDTO dto) {
         dto.setId(null);
         validarPorCPFeEmail(dto);
-        Tecnico newDTO = new Tecnico(dto);
-        return repository.save(newDTO);
+        Tecnico entity = new Tecnico(dto);
+        return repository.save(entity);
     }
 
     private void validarPorCPFeEmail(TecnicoDTO dto) {
