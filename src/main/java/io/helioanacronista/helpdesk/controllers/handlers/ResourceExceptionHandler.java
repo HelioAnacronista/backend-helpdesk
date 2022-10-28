@@ -1,6 +1,7 @@
 package io.helioanacronista.helpdesk.controllers.handlers;
 
 import io.helioanacronista.helpdesk.DTO.CustomError;
+import io.helioanacronista.helpdesk.services.exceptions.DataIntegrityViolationException;
 import io.helioanacronista.helpdesk.services.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,4 +23,13 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<CustomError> dataIntegrityViolationException(DataIntegrityViolationException ex,
+                                                                         HttpServletRequest request) {
+
+        CustomError err = new CustomError(Instant.now(), HttpStatus.BAD_REQUEST.value(),
+                "Violação de dados", ex.getMessage(), request.getRequestURI());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+    }
 }
