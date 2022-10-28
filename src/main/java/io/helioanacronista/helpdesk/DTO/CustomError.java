@@ -2,7 +2,7 @@ package io.helioanacronista.helpdesk.DTO;
 
 import java.time.Instant;
 
-public class CustomError {
+public class CustomError   {
 
     private Instant timestamp;
     private Integer status;
@@ -14,10 +14,18 @@ public class CustomError {
     }
 
     public CustomError(Instant timestamp, Integer status, String error, String message, String path) {
+        super();
         this.timestamp = timestamp;
         this.status = status;
         this.error = error;
         this.message = message;
+        this.path = path;
+    }
+
+    public CustomError(Instant timestamp, Integer status, String error, String path) {
+        this.timestamp = timestamp;
+        this.status = status;
+        this.error = error;
         this.path = path;
     }
 
@@ -60,4 +68,5 @@ public class CustomError {
     public void setPath(String path) {
         this.path = path;
     }
+
 }
