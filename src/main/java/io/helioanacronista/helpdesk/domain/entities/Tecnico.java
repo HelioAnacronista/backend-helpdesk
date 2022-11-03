@@ -1,48 +1,82 @@
 package io.helioanacronista.helpdesk.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.helioanacronista.helpdesk.DTO.TecnicoDTO;
-import io.helioanacronista.helpdesk.domain.enums.Perfil;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.*;
 
 @Entity
-public class Tecnico extends Pessoa {
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Table(name = "tb_tecnico")
+public class Tecnico implements UserDetails {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String nome;
+
+    @Column(unique = true)
+    private String cpf;
+
+    @Column(unique = true)
+    private String email;
+    private String senha;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "tb_tecnico_role",
+            joinColumns = @JoinColumn(name = "tecnico_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dataCriacao = LocalDate.now();
 
     @JsonIgnore
     @OneToMany(mappedBy = "tecnico")
     private List<Chamado> chamados = new ArrayList<>();
 
-    public Tecnico() {
-        super();
-        addPerfil(Perfil.CLIENTE);
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
     }
 
-    public Tecnico(Integer id, String nome, String cpf, String email, String senha) {
-        super(id, nome, cpf, email, senha);
-        addPerfil(Perfil.CLIENTE);
+    @Override
+    public String getPassword() {
+        return getSenha();
     }
 
-    public List<Chamado> getChamados() {
-        return chamados;
+    @Override
+    public String getUsername() {
+        return getEmail();
     }
 
-    public void setChamados(List<Chamado> chamados) {
-        this.chamados = chamados;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public Tecnico(TecnicoDTO entity) {
-        super();
-        this.id = entity.getId();
-        this.nome = entity.getNome();
-        this.cpf = entity.getCpf();
-        this.email = entity.getEmail();
-        this.senha = entity.getSenha();
-        this.perfis = entity.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
-        this.dataCriacao = entity.getDataCriacao();
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
