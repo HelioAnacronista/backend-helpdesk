@@ -3,7 +3,6 @@ package io.helioanacronista.helpdesk.controllers;
 import io.helioanacronista.helpdesk.DTO.ChamadoDTO;
 import io.helioanacronista.helpdesk.domain.entities.Chamado;
 import io.helioanacronista.helpdesk.services.ChamadoService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

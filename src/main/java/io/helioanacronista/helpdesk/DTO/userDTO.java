@@ -1,8 +1,5 @@
 package io.helioanacronista.helpdesk.DTO;
 
-import io.helioanacronista.helpdesk.domain.entities.User;
-import org.springframework.security.core.GrantedAuthority;
-
 import java.util.ArrayList;
 import java.util.List;
 

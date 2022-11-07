@@ -1,8 +1,5 @@
 package io.helioanacronista.helpdesk.DTO;
 
-import io.helioanacronista.helpdesk.DTO.CustomError;
-import io.helioanacronista.helpdesk.DTO.FieldMessage;
-
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;

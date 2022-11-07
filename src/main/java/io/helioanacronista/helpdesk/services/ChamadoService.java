@@ -1,8 +1,6 @@
 package io.helioanacronista.helpdesk.services;
 
 import io.helioanacronista.helpdesk.DTO.ChamadoDTO;
-import io.helioanacronista.helpdesk.DTO.ClienteDTO;
-import io.helioanacronista.helpdesk.DTO.TecnicoDTO;
 import io.helioanacronista.helpdesk.domain.entities.Chamado;
 import io.helioanacronista.helpdesk.domain.entities.Cliente;
 import io.helioanacronista.helpdesk.domain.entities.Tecnico;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ChamadoService {

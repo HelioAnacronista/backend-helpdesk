@@ -2,8 +2,6 @@ package io.helioanacronista.helpdesk.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.helioanacronista.helpdesk.domain.entities.Chamado;
-import io.helioanacronista.helpdesk.domain.entities.Cliente;
-import io.helioanacronista.helpdesk.domain.entities.Tecnico;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;

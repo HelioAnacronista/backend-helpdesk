@@ -2,7 +2,6 @@ package io.helioanacronista.helpdesk.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.helioanacronista.helpdesk.DTO.ClienteDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
