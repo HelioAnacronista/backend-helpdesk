@@ -1,45 +1,33 @@
 package io.helioanacronista.helpdesk.DTO;
 
+
 import io.helioanacronista.helpdesk.domain.entities.Chamado;
 import io.helioanacronista.helpdesk.domain.entities.Role;
 import io.helioanacronista.helpdesk.domain.entities.Tecnico;
-import lombok.*;
-import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.stereotype.Service;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-public class TecnicoDTO implements Serializable {
+@Data
+public class TecnicoCreateDTO {
 
-    protected Integer id;
+    private Integer id;
 
-    @Size(min = 3, max = 80, message = "O nome precisa ter entre 3 a 8 caracteres")
-    @NotNull(message = "O campo NOME é requerido")
-    protected String nome;
+    private String nome;
 
-    @NotNull(message = "O campo CPF é requerido")
-    @CPF
-    protected String cpf;
+    private String cpf;
 
-    @NotNull(message = "O campo EMAIL é requerido")
-    @Email
-    protected String email;
+    private String email;
 
-    @NotNull(message = "O campo SENHA é requerido")
-    protected String senha;
+    private String senha;
 
     private Set<RoleDTO> roles = new HashSet<RoleDTO>();
 
@@ -47,7 +35,7 @@ public class TecnicoDTO implements Serializable {
 
     private List<ChamadoDTO> chamados = new ArrayList<ChamadoDTO>();
 
-    public TecnicoDTO(Tecnico entity) {
+    public TecnicoCreateDTO(Tecnico entity) {
         id = entity.getId();
         nome = entity.getNome();
         cpf = entity.getCpf();
@@ -61,5 +49,4 @@ public class TecnicoDTO implements Serializable {
             chamados.add(new ChamadoDTO(chama));
         }
     }
-
 }
