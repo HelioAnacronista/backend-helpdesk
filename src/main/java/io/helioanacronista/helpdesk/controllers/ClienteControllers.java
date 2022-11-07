@@ -1,6 +1,7 @@
 package io.helioanacronista.helpdesk.controllers;
 
 import io.helioanacronista.helpdesk.DTO.ClienteDTO;
+import io.helioanacronista.helpdesk.domain.entities.Cliente;
 import io.helioanacronista.helpdesk.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,8 @@ public class ClienteControllers {
     private ClienteService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ClienteDTO> findById(@PathVariable Integer id) {
-        ClienteDTO dto = service.findById(id);
+    public ResponseEntity<Cliente> findById(@PathVariable Integer id) {
+        Cliente dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
     }
 

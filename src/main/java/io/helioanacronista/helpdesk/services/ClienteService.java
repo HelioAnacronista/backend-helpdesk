@@ -28,9 +28,9 @@ public class ClienteService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public ClienteDTO findById(Integer id) {
+    public Cliente findById(Integer id) {
         Cliente entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado! Id: " + id));
-        return new ClienteDTO(entity);
+        return entity;
     }
 
     public List<ClienteDTO> findAll() {
@@ -91,7 +91,7 @@ public class ClienteService {
 
     public void delete(Integer id) {
         try {
-            ClienteDTO entity = findById(id);
+            Cliente entity = findById(id);
             if (entity.getChamados().size() > 0) {
                 throw new DataIntegrityViolationException("Técnico possui ordens de serviço e não pode ser deletado!");
             }

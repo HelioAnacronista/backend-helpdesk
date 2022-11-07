@@ -1,9 +1,6 @@
 package io.helioanacronista.helpdesk.services;
 
-import io.helioanacronista.helpdesk.DTO.ChamadoDTO;
-import io.helioanacronista.helpdesk.DTO.RoleDTO;
-import io.helioanacronista.helpdesk.DTO.TecnicoCreateDTO;
-import io.helioanacronista.helpdesk.DTO.TecnicoDTO;
+import io.helioanacronista.helpdesk.DTO.*;
 import io.helioanacronista.helpdesk.domain.entities.Chamado;
 import io.helioanacronista.helpdesk.domain.entities.Role;
 import io.helioanacronista.helpdesk.domain.entities.Tecnico;
@@ -29,9 +26,9 @@ public class TecnicoService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public TecnicoDTO findById(Integer id) {
+    public Tecnico findById(Integer id) {
         Tecnico tecnico = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado! Id: " + id));
-        return new TecnicoDTO(tecnico);
+        return tecnico;
     }
 
     public List<TecnicoDTO> findAll() {
@@ -91,7 +88,7 @@ public class TecnicoService {
 
     public void delete(Integer id) {
         try {
-            TecnicoDTO entity = findById(id);
+            Tecnico entity = findById(id);
             if (entity.getChamados().size() > 0) {
                 throw new DataIntegrityViolationException("Técnico possui ordens de serviço e não pode ser deletado!");
             }
@@ -203,3 +200,4 @@ public class TecnicoService {
         }
     }
 }
+
