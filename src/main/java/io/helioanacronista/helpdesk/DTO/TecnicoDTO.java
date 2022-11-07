@@ -5,7 +5,6 @@ import io.helioanacronista.helpdesk.domain.entities.Role;
 import io.helioanacronista.helpdesk.domain.entities.Tecnico;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;

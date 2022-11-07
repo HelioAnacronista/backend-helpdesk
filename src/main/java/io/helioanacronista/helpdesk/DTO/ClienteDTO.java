@@ -1,8 +1,10 @@
 package io.helioanacronista.helpdesk.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.helioanacronista.helpdesk.domain.entities.Chamado;
+import io.helioanacronista.helpdesk.domain.entities.Cliente;
 import io.helioanacronista.helpdesk.domain.entities.Role;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;
@@ -10,10 +12,16 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class ClienteDTO implements Serializable {
 
     protected Integer id;
@@ -33,10 +41,25 @@ public class ClienteDTO implements Serializable {
     @NotNull(message = "O campo SENHA é requerido")
     protected String senha;
 
-    private Set<Role> roles = new HashSet<>();
+    private Set<RoleDTO> roles = new HashSet<>();
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCriacao = LocalDate.now();
 
+    private List<ChamadoDTO> chamados = new ArrayList<ChamadoDTO>();
 
+    public ClienteDTO(Cliente entity) {
+        id = entity.getId();
+        nome = entity.getNome();
+        cpf = entity.getCpf();
+        email = entity.getEmail();
+        senha = entity.getSenha();
+        for (Role rol : entity.getRoles()) {
+            roles.add(new RoleDTO(rol));
+        }
+        dataCriacao = entity.getDataCriacao();
+        for (Chamado chama : entity.getChamados()) {
+            chamados.add(new ChamadoDTO(chama));
+        }
+    }
 }

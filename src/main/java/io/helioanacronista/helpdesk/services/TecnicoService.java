@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -51,7 +50,7 @@ public class TecnicoService {
             entity.setNome(dto.getNome());
             entity.setCpf(dto.getCpf());
             entity.setEmail(dto.getEmail());
-            entity.setSenha(dto.getSenha());
+            entity.setSenha(passwordEncoder.encode(dto.getSenha()));
 
             //Cria um role padrão para entidade
             Set<Role> setRoles = new HashSet<>();
@@ -105,7 +104,11 @@ public class TecnicoService {
         repository.deleteById(id);
     }
 
-    //valida cpf e email
+    /*
+    Métodos de validação e de copias de dto
+     */
+
+    //Validador de CPF e EMAIL
     private void validarPorCPFeEmail(TecnicoDTO dto) {
         Optional<Tecnico> entity = repository.findByCpf(dto.getCpf());
         if (entity.isPresent() && entity.get().getId() != dto.getId()) {
@@ -118,7 +121,7 @@ public class TecnicoService {
         }
     }
 
-    //Validar cpf e email TecnicoCreate
+    //Validador de CPF e EMAIL
     private void validarPorCPFeEmail(TecnicoCreateDTO dto) {
         Optional<Tecnico> entity = repository.findByCpf(dto.getCpf());
         if (entity.isPresent() && entity.get().getId() != dto.getId()) {
@@ -133,12 +136,12 @@ public class TecnicoService {
 
 
 
-    //Copy DTO TecnicoCreateDTO para Criação
+    //Copia Entity para DTO - para  método de Criação
     private void copyDTOToEntity (TecnicoCreateDTO dto, Tecnico entity) {
         entity.setNome(dto.getNome());
         entity.setCpf(dto.getCpf());
         entity.setEmail(dto.getEmail());
-        entity.setSenha(dto.getSenha());
+        entity.setSenha(passwordEncoder.encode(dto.getSenha()));
 
         entity.getRoles().clear();
         for (RoleDTO rolDTO : dto.getRoles() ) {
