@@ -1,11 +1,11 @@
 INSERT INTO tb_user (email, senha) VALUES ('helio@gmail.com', '$2a$12$OruQnsYKy3iJ6s8s.cSvQejvgCYRjL8Ds4LRfJErKPl2vMKu8c3s')
-INSERT INTO tb_user (email, senha) VALUES ('maria@gmail.com', '$2a$12$uDmWEQUtShoPVVh5ZMNSFeRqzr65O7UeT8yvei1R8hF.USuzMIqH2')
+INSERT INTO tb_user (email, senha) VALUES ('maria@gmail.com', '$2a$12$yF09m4Od0dU2HfuxBc3caOPIhstI/.p1zHMrZPoEFQBvS/V.ANhrS')
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_CLIENT');
 INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
 
 INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
 
 
