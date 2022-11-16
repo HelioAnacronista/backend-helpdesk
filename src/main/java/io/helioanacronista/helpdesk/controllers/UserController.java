@@ -2,6 +2,7 @@ package io.helioanacronista.helpdesk.controllers;
 
 import io.helioanacronista.helpdesk.DTO.UserDTO;
 import io.helioanacronista.helpdesk.services.UserService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/users")
+@Api( tags = "users")
 public class UserController {
 
     @Autowired

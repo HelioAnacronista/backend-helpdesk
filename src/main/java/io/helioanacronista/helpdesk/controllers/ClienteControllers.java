@@ -3,6 +3,8 @@ package io.helioanacronista.helpdesk.controllers;
 import io.helioanacronista.helpdesk.DTO.ClienteDTO;
 import io.helioanacronista.helpdesk.domain.entities.Cliente;
 import io.helioanacronista.helpdesk.services.ClienteService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +16,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/clientes")
+@Api( tags = "clientes")
 public class ClienteControllers {
 
     @Autowired
     private ClienteService service;
 
+    @ApiOperation(value = "This method is used to get the clients.")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Cliente> findById(@PathVariable Integer id) {
         Cliente dto = service.findById(id);

@@ -9,12 +9,12 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
 
 
--- Insert tb_cliente
+-- Insert TB_TECNICO
 INSERT INTO TB_TECNICO (cpf,email,data_criacao, nome,senha) VALUES ('550.482.150-95', 'joaotecnico@gmail.com', '2022-10-31' ,'joao silva Tecnico', '$2a$10$pApv4VHvwYGIX59PHOCgVOW8nd96R9yYUEarzE/dDcpCyLBW5stnK');
 
 INSERT INTO tb_tecnico_role (tecnico_id, role_id) VALUES (1, 1);
 
---- Insert tb_cliente
+--- Insert TB_CLIENTE
 INSERT INTO tb_cliente (cpf,email,data_criacao, nome,senha) VALUES ('41.837.556-2', 'joaoCliente@gmail.com', '2022-10-31' ,'joao silva Cliente', '$2a$10$pApv4VHvwYGIX59PHOCgVOW8nd96R9yYUEarzE/dDcpCyLBW5stnK');
 
 INSERT INTO tb_cliente_role (cliente_id, role_id) VALUES (1, 1);

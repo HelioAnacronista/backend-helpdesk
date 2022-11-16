@@ -4,6 +4,7 @@ import io.helioanacronista.helpdesk.DTO.TecnicoCreateDTO;
 import io.helioanacronista.helpdesk.DTO.TecnicoDTO;
 import io.helioanacronista.helpdesk.domain.entities.Tecnico;
 import io.helioanacronista.helpdesk.services.TecnicoService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/tecnicos")
+@Api( tags = "tecnicos")
 public class TecnicoControllers {
 
     @Autowired

@@ -3,6 +3,7 @@ package io.helioanacronista.helpdesk.controllers;
 import io.helioanacronista.helpdesk.DTO.ChamadoDTO;
 import io.helioanacronista.helpdesk.domain.entities.Chamado;
 import io.helioanacronista.helpdesk.services.ChamadoService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/chamados")
+@Api(tags = "chamados")
 public class ChamadoControllers {
 
     @Autowired
